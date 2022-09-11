@@ -1,28 +1,16 @@
-// import React, { Component } from "react";
+import React, { useState } from "react";
 import USER_DATA from "../mock_names.json";
 import SearchBar from "./Searchbar";
-
-// export default class SearchbarContainer extends Component {
-//   render() {
-//     return (
-//       <div>
-//         {USER_DATA.map((value, key) => {
-//           return <div>{value.first_name}</div>;
-//         })}
-//       </div>
-//     );
-//   }
-// }
-
-import React from "react";
-import { useState } from "react";
 
 export default function SearchbarContainer() {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <>
-      <SearchBar placeholder="name" onChange={(event) => event} />
+      <SearchBar placeholder="name" changeHandler={handleChange} />
       {USER_DATA.filter((value, key) => {
         if (searchTerm == "") {
           return value;
